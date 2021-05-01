@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.23333333333333334" />
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19427083333333334" />
         <entry key="core/src/main/res/layout/item_spinner_country_code_number.xml" value="0.2078125" />
         <entry key="core/src/main/res/layout/layout_progress.xml" value="0.2078125" />

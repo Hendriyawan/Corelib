@@ -4,12 +4,23 @@ import android.app.Dialog
 import android.content.Intent
 import android.view.Gravity
 import android.view.Window
+import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.mti.core.R
 
 open class BaseActivity : AppCompatActivity() {
     private lateinit var progressDialog: Dialog
+
+    /**
+     * set full screen flags
+     */
+    protected fun flagsFullScreen(){
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+    }
 
     //animation transition
     protected fun fadeAnimationTransition() {
