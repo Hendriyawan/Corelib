@@ -3,6 +3,7 @@ package com.mti.core.base
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
+import android.os.Handler
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.mti.core.R
+import com.mti.core.bottomsheet.BottomSheetDialogAlert
 
 open class BaseActivity : AppCompatActivity() {
     private lateinit var progressDialog: Dialog
@@ -105,5 +107,17 @@ open class BaseActivity : AppCompatActivity() {
             setTextColor(ContextCompat.getColor(this@BaseActivity, android.R.color.white))
             show()
         }
+    }
+
+    /**
+     * show a alert use bottom sheet
+     */
+    protected fun showAlertBottom(type: String, message: String){
+        val bottomSheetAlert = BottomSheetDialogAlert()
+        bottomSheetAlert.setType(type, message)
+        bottomSheetAlert.show(supportFragmentManager, bottomSheetAlert::class.java.simpleName)
+        Handler().postDelayed({
+            bottomSheetAlert.dismiss()
+        }, 1000)
     }
 }
