@@ -2,11 +2,15 @@ package com.mti.core.base
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.view.Gravity
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import com.mti.core.R
 
 open class BaseActivity : AppCompatActivity() {
@@ -72,5 +76,34 @@ open class BaseActivity : AppCompatActivity() {
             type = "text/plain"
         }
         startActivity(Intent.createChooser(sendIntent, title))
+    }
+
+    /**
+     * show a SnackBar
+     */
+    protected fun showSnackBar(view: View, type: String, message: String, listener: () -> Unit) {
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).apply {
+            setAction(resources.getString(android.R.string.ok)) {
+                listener()
+                dismiss()
+            }
+
+            val backgroundColor = when (type) {
+                "success" -> ContextCompat.getColor(
+                    this@BaseActivity,
+                    android.R.color.holo_green_light
+                )
+                "failed" -> ContextCompat.getColor(
+                    this@BaseActivity,
+                    android.R.color.holo_red_light
+                )
+                "warning" -> Color.parseColor("#FFC107")
+                else -> android.R.color.holo_green_dark
+            }
+            setBackgroundTint(backgroundColor)
+            setActionTextColor(ContextCompat.getColor(this@BaseActivity, android.R.color.white))
+            setTextColor(ContextCompat.getColor(this@BaseActivity, android.R.color.white))
+            show()
+        }
     }
 }
